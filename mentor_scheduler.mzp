@@ -1,12 +1,14 @@
 {
     "openFiles": [
-        "schedule_teams.mzn"
+        "schedule_teams.mzn",
+        "split_01_data.json"
     ],
     "openTab": 0,
     "projectFiles": [
-        "schedule_teams.mzn"
+        "schedule_teams.mzn",
+        "split_01_data.json"
     ],
-    "selectedBuiltinConfigId": "org.chuffed.chuffed",
-    "selectedBuiltinConfigVersion": "0.10.4",
+    "selectedBuiltinConfigId": "org.gecode.gecode",
+    "selectedBuiltinConfigVersion": "6.3.0",
     "version": 106
 }
