@@ -68,7 +68,7 @@ constraint overall_score = (sum(team_score) div number_of_teams) + (min(team_sco
 constraint max_possible_score = (100 + 300 + 120);
 constraint overall_score <= max_possible_score;
 
-% search annotations:
+% search annotations: (variable to search, variable choice strategy, assignment strategy)
 % variable choice:
 % input_order, first_fail, anti_first_fail, smallest, largest, occurrence, most_constrained, max_regret, dom_w_deg
 % assignment:
