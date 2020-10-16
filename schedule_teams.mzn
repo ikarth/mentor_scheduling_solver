@@ -52,11 +52,19 @@ constraint forall(i in MENTORS)(mentor_score[i] = 2 * (100 - (100 * (mentor_meet
 constraint forall(j in TEAMS)(a_mentor_assigned_teams_in_slots[team_assigned_mentor[j], team_assigned_meeting_times[j]] = j);
 constraint alldifferent_except_0(a_mentor_assigned_teams_in_slots);
 
+% Just double-checking that there's no overlap
 constraint forall(j in TEAMS)(team_assigned_index[j] = team_assigned_meeting_times[j] + (team_assigned_mentor[j] * number_of_slots));
 constraint alldifferent_except_0(team_assigned_index);
 
+% This controls the balance between the three main things that we want to optimize for:
+% - the workload should be spread across the mentors as evenly as possible
+% - the average number of team members who can participate (across all teams) should be as high as possible
+% - the worst time slot should be as unbad as possible (i.e. the team with the current worst availability at
+%   their current meeting should have as high an availability rating as possible). This one is more heavily
+%   weighted because I want the solver to be more daring to shuffle things around to make it better. It can
+%   usually rebalance the meetings between mentors once it finds an interesting possibility, so you don't
+%   want it to spend too much time hanging on to individual good-enough schedules for mentors.
 constraint overall_score = (sum(team_score) div number_of_teams) + (min(team_score) * 3) + min(mentor_score);
-
 constraint max_possible_score = (100 + 300 + 120);
 constraint overall_score <= max_possible_score;
 
@@ -66,5 +74,12 @@ constraint overall_score <= max_possible_score;
 % assignment:
 % indomain_min, indomain_max, indomain_middle, indomain_median, indomain, indomain_random, indomain_split, indomain_reverse_split, indomain_interval
 
-solve :: int_search(team_assigned_index, largest, indomain_random)
+
+% I've mostly been running it with Gecode 6.3.0 and a very high number of threads. Some search annotations 
+% are more likely to produce  good results faster; first_fail and smallest seem to work pretty well, but 
+% try different combinations.
+
+solve :: int_search(team_assigned_index, first_fail, indomain_random)
   maximize overall_score;
+
+% If it runs for more than about 15 minutes (on my machine, granted) and it's not finding better stuff at a steady-ish clip, might want to tweak the solver annotations.

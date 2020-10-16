@@ -1,16 +1,12 @@
 {
     "openFiles": [
-        "schedule_teams.mzn",
-        "split_01_data.json",
-        "schedule_teams.fzn"
+        "schedule_teams.mzn"
     ],
     "openTab": 0,
     "projectFiles": [
-        "gcode_config.mpc",
-        "schedule_teams.fzn",
-        "schedule_teams.mzn",
-        "split_01_data.json"
+        "schedule_teams.mzn"
     ],
-    "selectedSolverConfigFile": "gcode_config.mpc",
+    "selectedBuiltinConfigId": "org.chuffed.chuffed",
+    "selectedBuiltinConfigVersion": "0.10.4",
     "version": 106
 }
