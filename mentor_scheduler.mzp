@@ -1,0 +1,16 @@
+{
+    "openFiles": [
+        "schedule_teams.mzn",
+        "split_01_data.json",
+        "schedule_teams.fzn"
+    ],
+    "openTab": 0,
+    "projectFiles": [
+        "gcode_config.mpc",
+        "schedule_teams.fzn",
+        "schedule_teams.mzn",
+        "split_01_data.json"
+    ],
+    "selectedSolverConfigFile": "gcode_config.mpc",
+    "version": 106
+}
